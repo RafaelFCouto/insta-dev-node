@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 const Users = require('../models/Users');
+const { encrypt } = require('../../utils/crypt');
+
 
 
 class AuthController{
@@ -34,9 +36,11 @@ class AuthController{
 
         }
 
-        const {id, user_name:userName} = user;
+        const {id, user_name:userName} = user; 
+        const {iv, content}= encrypt(id);
+        const newId = `${iv}:${content}`;
 
-        const token = jwt.sign({}, process.env.HASH_BCRYPT,{expiresIn:'7d'});
+        const token = jwt.sign({newId}, process.env.HASH_BCRYPT,{expiresIn:'7d'});
 
 
 
