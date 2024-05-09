@@ -16,7 +16,7 @@ class AuthController{
             whereClause={user_name};
         }
         else{
-            return res.status(401).json({error:'We need a e-mail or password'});
+            return res.status(401).json({error:'We need a e-mail or username'});
         }
 
 
@@ -40,7 +40,7 @@ class AuthController{
         const {iv, content}= encrypt(id);
         const newId = `${iv}:${content}`;
 
-        const token = jwt.sign({newId}, process.env.HASH_BCRYPT,{expiresIn:'7d'});
+        const token = jwt.sign({userId: newId}, process.env.HASH_BCRYPT,{expiresIn:process.env.EXPIRE_IN});
 
 
 
