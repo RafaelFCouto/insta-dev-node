@@ -34,11 +34,15 @@ class AuthController{
 
         }
 
+        const {id, user_name:userName} = user;
+
+        const token = jwt.sign({}, process.env.HASH_BCRYPT,{expiresIn:'7d'});
 
 
 
 
-        return res.status(200).json({user: user});
+
+        return res.status(200).json({user: {id, user_name:userName}, token:token});
 
 
     }
