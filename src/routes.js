@@ -1,5 +1,7 @@
 
 const{Router} = require('express');
+const{upload} = require('./configs/multer');
+
 const schemaValidator = require('./apps/middlewares/schemaValidator');
 const AuthMiddleware = require('./apps/middlewares/authentication');
 
@@ -8,6 +10,9 @@ const userSchema = require('./schema/create.user.schema.json');
 
 const AuthController = require('./apps/controllers/AuthController');
 const authSchema = require('./schema/auth.schema.json');
+
+
+const FileController = require('./apps/controllers/FileController');
 
 const routes = new Router();
 
@@ -28,6 +33,9 @@ routes.use(AuthMiddleware);
 routes.put('/user/update', UserController.updateUser);
 routes.delete('/user/delete', UserController.deleteUser);
 routes.get('/user/profile', UserController.userProfile);
+
+
+routes.post('/upload', upload.single('image'), FileController.upload);
 
 
 
