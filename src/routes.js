@@ -13,10 +13,24 @@ const routes = new Router();
 
 
 routes.post('/user/create', schemaValidator(userSchema), UserController.createUser);
+
+
+
+
+
+
 routes.post('/auth',schemaValidator(authSchema), AuthController.authenticate);
 
 
 routes.use(AuthMiddleware);
+
+
+routes.put('/user/update', UserController.updateUser);
+routes.delete('/user/delete', UserController.deleteUser);
+routes.get('/user/profile', UserController.userProfile);
+
+
+
 
 routes.get('/health', (req,res)=>{
     return res.send({message:'Connected with success!'});
