@@ -121,6 +121,38 @@ class PostController{
     }
 
 
+    async listMyPosts(req,res){
+        const allPost = await Posts.findAll({
+            where:{
+                author_id:req.userId,
+            },
+        });
+
+        if(!allPost){
+            return ResizeObserver.status(400).json({message:'Failed to list all posts'});
+        }
+
+
+
+        const formatedData= [];
+
+        for (const item of allPost) {
+            formatedData.push({
+                id:item.id,
+                image:item.image,
+                description:item.description,
+                number_likes:item.number_likes,
+
+            })
+            
+        }
+        
+
+        return res.status(200).json({postsData: formatedData});
+    }
+    
+
+
 
 
 
