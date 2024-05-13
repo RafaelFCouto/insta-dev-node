@@ -41,6 +41,7 @@ routes.get('/user/profile', UserController.userProfile);
 routes.post('/upload', upload.single('image'), FileController.upload);
 
 routes.post('/post/create', schemaValidator(postSchema), PostController.createPost);
+routes.delete('/post/delete/:id', PostController.deletePost);
 
 
 

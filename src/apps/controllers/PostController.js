@@ -24,6 +24,43 @@ class PostController{
     }
 
 
+    async deletePost(req, res){
+
+        const id = req.params.id;
+
+        const verifyPost = await Posts.findOne({
+            where:{
+                id,
+            },
+        });
+
+
+
+        if(!verifyPost){
+            return res.status(404).json({message: 'Post does not exists'});
+        }
+
+        if(verifyPost.author_id != req.userId){
+            return res.status(401).json({message: 'Unauthorized'});
+        }
+
+        const deletePost = await Posts.destroy({
+            where:{
+                id,
+            },
+
+        });
+
+        if(!deletePost){
+            return res.status(400).json({message: 'Failed to delete this post'});
+        }
+
+        return res.status(200).json({message:'Post deleted'})
+
+
+    }
+
+
 
 
 
