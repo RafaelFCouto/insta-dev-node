@@ -93,6 +93,33 @@ class PostController{
 
     }
 
+    async addLike(req, res){
+        const id = req.params.id;
+
+        const verifyPost = await Posts.findOne({
+            where:{
+                id,
+            },
+        });
+
+        if(!verifyPost){
+            return res.status(404).json({message: 'Post does not exists'});
+        }
+
+        const postAddLike = await Posts.update({number_likes: verifyPost.number_likes + 1},{where:{id:id}});
+
+        console.log(postAddLike.number_likes);
+
+
+        if(!postAddLike){
+            return res.status(400).json({message:'Failed add like in this post'});
+        }
+
+        return res.status(200).json({message: `Like Storaged`});
+
+
+    }
+
 
 
 
