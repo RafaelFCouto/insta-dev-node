@@ -109,9 +109,6 @@ class PostController{
 
         const postAddLike = await Posts.update({number_likes: verifyPost.number_likes + 1},{where:{id:id}});
 
-        console.log(postAddLike.number_likes);
-
-
         if(!postAddLike){
             return res.status(400).json({message:'Failed add like in this post'});
         }
