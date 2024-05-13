@@ -40,12 +40,12 @@ routes.get('/user/profile', UserController.userProfile);
 
 routes.post('/upload', upload.single('image'), FileController.upload);
 
-routes.post('/post/create', schemaValidator(postSchema), PostController.createPost);
-routes.delete('/post/delete/:id', PostController.deletePost);
-routes.put('/post/update/:id', PostController.updatePost);
-routes.put('/post/add-like/:id', PostController.addLike);
-routes.get('/post/listMyPosts', PostController.listMyPosts);
-routes.get('/post/listAllPosts', PostController.listAllPosts);
+routes.post('/posts/create', schemaValidator(postSchema), PostController.createPost);
+routes.delete('/posts/delete/:id', PostController.deletePost);
+routes.put('/posts/update/:id', PostController.updatePost);
+routes.put('/posts/add-like/:id', PostController.addLike);
+routes.get('/posts/listMyPosts', PostController.listMyPosts);
+routes.get('/posts/listAllPosts', PostController.listAllPosts);
 
 
 
