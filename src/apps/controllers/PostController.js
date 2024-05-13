@@ -1,5 +1,6 @@
-const { NOW, where } = require("sequelize");
-const Posts = require("../models/posts");
+const { NOW, where } = require('sequelize');
+const Posts = require('../models/posts');
+const Users = require('../models/Users');
 
 class PostController{
 
@@ -151,6 +152,27 @@ class PostController{
         return res.status(200).json({postsData: formatedData});
     }
     
+
+    async listAllPosts(req, res){
+        const allPost = await Posts.findAll({
+            attributes:['id','image', 'description','number_likes'],
+            include:[
+                {
+                    model:Users,
+                    as: 'user',
+                    required:true,
+                    attributes:['id','user_name']
+                }
+            ],
+
+        });
+
+
+        return res.status(200).json({postsData: allPost});
+
+
+
+    }
 
 
 

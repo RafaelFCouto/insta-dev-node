@@ -45,6 +45,9 @@ routes.delete('/post/delete/:id', PostController.deletePost);
 routes.put('/post/update/:id', PostController.updatePost);
 routes.put('/post/add-like/:id', PostController.addLike);
 routes.get('/post/listMyPosts', PostController.listMyPosts);
+routes.get('/post/listAllPosts', PostController.listAllPosts);
+
+
 
 
 
