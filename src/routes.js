@@ -42,6 +42,7 @@ routes.post('/upload', upload.single('image'), FileController.upload);
 
 routes.post('/post/create', schemaValidator(postSchema), PostController.createPost);
 routes.delete('/post/delete/:id', PostController.deletePost);
+routes.put('/post/update/:id', PostController.updatePost);
 
 
 

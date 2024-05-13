@@ -1,4 +1,4 @@
-const { NOW } = require("sequelize");
+const { NOW, where } = require("sequelize");
 const Posts = require("../models/posts");
 
 class PostController{
@@ -56,6 +56,39 @@ class PostController{
         }
 
         return res.status(200).json({message:'Post deleted'})
+
+
+    }
+
+
+    async updatePost(req, res){
+        const {image, description} = req.body;
+
+        const id = req.params.id;
+
+        const verifyPost = await Posts.findOne({
+            where:{
+                id,
+            },
+        });
+
+        if(!verifyPost){
+            return res.status(404).json({message: 'Post does not exists'});
+        }
+
+        if(verifyPost.author_id != req.userId){
+            return res.status(401).json({message: 'Unauthorized'});
+        }
+
+
+        const postUpdate = await Posts.update(req.body,{where:{id:id}});
+
+        if(!postUpdate){
+            return res.status(400).json({message: 'Failed to update this post'});
+        }
+
+
+        return res.status(200).json({message: 'Post updated'});
 
 
     }
