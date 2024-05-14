@@ -23,10 +23,6 @@ const routes = new Router();
 routes.post('/user/create', schemaValidator(userSchema), UserController.createUser);
 
 
-
-
-
-
 routes.post('/auth',schemaValidator(authSchema), AuthController.authenticate);
 
 
@@ -46,6 +42,7 @@ routes.put('/posts/update/:id', PostController.updatePost);
 routes.put('/posts/add-like/:id', PostController.addLike);
 routes.get('/posts/listMyPosts', PostController.listMyPosts);
 routes.get('/posts/listAllPosts', PostController.listAllPosts);
+
 
 
 
