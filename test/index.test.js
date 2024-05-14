@@ -2,7 +2,7 @@
 const app = require('../src/server');
 const request = require('supertest');
 
-const {user, auth, token} = require('../test/mocks');
+const {user, auth, token, post} = require('../test/mocks');
 const Test = require('supertest/lib/test');
 
 
@@ -30,8 +30,16 @@ describe('Teste em rotas protegidas...', ()=>{
 
     test('Acesso a uma rota protegida', async ()=>{
         const response = await request(app).post('/posts/listAllPosts').set('Authorization', `Bearer ${token}`);
-        console.log(response.body);
+        
     });
+
+    test('Create Post', async()=>{
+        const response = await request(app)
+            .post('/posts/create')
+            .set('Authorization', `Bearer ${token}`)
+            .send(post);
+
+    })
 });
 
 

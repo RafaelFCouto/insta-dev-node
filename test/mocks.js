@@ -14,7 +14,10 @@ const auth={
     password: "senha123"
 }
 
-const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlZDk1ZDJiZDlhYzExZGJlM2JjYzVkOTk3MzE0MDlmZTowNDQxMDM5YjdiMGEzNTI3ZTY1ZjY0OWFkYzY3NDA2MyIsImlhdCI6MTcxNTcxNTk4MywiZXhwIjoxNzE2MzIwNzgzfQ.TxffgCZcMBBmnk_wxQkreiGa5IrovXq3Df3WG5NeqM0";
+const post = {
+    image:"https://postinsta/jogo-sport.jpg",
+    description:"Vendo o meu time de coração"
+}
 
 
-module.exports={user, auth, token};
+module.exports={user, auth, post};
